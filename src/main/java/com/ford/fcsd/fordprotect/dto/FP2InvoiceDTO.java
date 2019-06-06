@@ -8,6 +8,17 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.ford.fcsd.fordprotect.json.CustomLocalDateDeserializer;
 import com.ford.fcsd.fordprotect.json.CustomLocalDateSerializer;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class FP2InvoiceDTO {
 	
 	@JsonProperty("invoice_id")
@@ -21,14 +32,18 @@ public class FP2InvoiceDTO {
 	@JsonDeserialize(using = CustomLocalDateDeserializer.class)
 	private LocalDate date;
 	
+	@JsonProperty("invoice_size")
+	private Long size;
+	
 	public FP2InvoiceDTO() {
 	}
 
-	public FP2InvoiceDTO(Integer id, String description, LocalDate date) {
+	public FP2InvoiceDTO(Integer id, String description, LocalDate date, Long size) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.date = date;
+		this.size = size;
 	}
 
 	public Integer getId() {
@@ -55,9 +70,17 @@ public class FP2InvoiceDTO {
 		this.date = date;
 	}
 
+	public Long getSize() {
+		return size;
+	}
+
+	public void setSize(Long size) {
+		this.size = size;
+	}
+
 	@Override
 	public String toString() {
-		return "FP2InvoiceDTO [id=" + id + ", description=" + description + ", date=" + date + "]";
+		return "FP2InvoiceDTO [id=" + id + ", description=" + description + ", date=" + date + ", size=" + size + "]";
 	}
 	
 }

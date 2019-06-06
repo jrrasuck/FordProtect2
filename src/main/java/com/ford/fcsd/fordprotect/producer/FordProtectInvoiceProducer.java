@@ -26,7 +26,7 @@ public class FordProtectInvoiceProducer {
 		
 		try {
 			String json = mapper.writeValueAsString(invoice);
-			rabbitTemplate.convertAndSend("q.fp2.hello", json);
+			rabbitTemplate.convertAndSend("x.emis.select", "", json);
 			
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
